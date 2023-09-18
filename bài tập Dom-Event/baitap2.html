@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="baitap1"></div>
+
+    <script>
+            let baitap1Div = document.getElementById('baitap1');
+
+            let label = document.createElement('timkiem');
+            label.textContent = 'Nhập nội dung tìm kiếm'
+            let input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'timkiem';
+            let link = document.createElement('a');
+            link.href = '#';
+            link.textContent = 'Ẩn tìm kiếm nâng cao';
+            let select = document.createElement('select');
+            select.id = 'cars';
+            select.name = 'cars';
+            let options = ['Volvo', 'Saab', 'Mercedes', 'Audi'];
+
+            for (let optionText of options) {
+                let option = document.createElement('option');
+                option.value = optionText.toLowerCase();
+                option.textContent = optionText;
+                select.appendChild(option);
+            }
+            let button = document.createElement('button');
+            button.textContent = 'Tìm kiếm';
+            let advancedSearchVisible = true;
+
+            // Hàm để ẩn hoặc hiển thị danh mục tìm kiếm nâng cao
+             function toggleAdvancedSearch() {
+            if (advancedSearchVisible) {
+                select.style.display = 'none';
+                link.textContent = '  Hiện tìm kiếm nâng cao';
+            } else {
+                select.style.display = 'block';
+                link.textContent = '  Ẩn tìm kiếm nâng cao';
+            }
+            advancedSearchVisible = !advancedSearchVisible;
+            }
+
+            link.addEventListener('click', toggleAdvancedSearch);
+
+
+            baitap1Div.appendChild(label);
+            baitap1Div.appendChild(input);
+            baitap1Div.appendChild(link);
+            baitap1Div.appendChild(document.createElement('br'));
+            baitap1Div.appendChild(select);
+            baitap1Div.appendChild(document.createElement('br'));
+            baitap1Div.appendChild(document.createElement('br'));
+            baitap1Div.appendChild(button);
+
+    </script>
+</body>
+</html>

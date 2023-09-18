@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container{
+        display: flex;
+        justify-content: space-around;
+    }
+    .phim {
+        margin-left: 300px;
+        margin-bottom: 20px;
+    }
+    .form{
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+  
+
+</style>
+<body>
+    <fieldset style="width: 800px;",>
+        <h1 class="form">Form đặt hàng</h1>
+        <form id="ortherForm">
+            <div class="container">
+                <table>
+                    <tr>
+                        <td><label for="buyerInfo" >Thông tin người mua</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="hovatenMua">Họ và tên</label></td>
+                        <td><input type="text" id="hovatenMua" name="Họ và tên"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="emailMua">Email</label></td>
+                        <td><input type="email" id="emailMua" name="Email"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="phonenumberMua">Điện thoại</label></td>
+                        <td><input type="text" id="phonenumberMua" name="Điện thoại"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="addressMua">Địa chỉ</label></td>
+                        <td><input type="text" id="addressMua"" name="Địa chỉ"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ngaydatMua">Ngày đặt</label></td>
+                        <td><input type="text" id="ngaydatMua" name="Ngày đặt"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="thanhtoanMua">Phương thức thanh toán</label></td>
+                        <td><input type="text" id="thanhtoanMua" name="Phương thức thanh toán"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="guimailMua">Gửi mail cho tôi</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td><label for="receiverInfo">Thông tin người nhận</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="nguoiNhan"> Tôi là người nhận</td>
+                    </tr>
+                    <tr>
+                        <td><label for="hovatenNhan">Họ và tên</label></td>
+                        <td><input type="text" id="hovatenNhan" name="Họ và tên"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="emailNhan">Email</label></td>
+                        <td><input type="text" id="emailNhan" name="Email"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="phonenumberNhan">Điện thoại</label></td>
+                        <td><input type="text" id="phonenumberNhan" name="Điện thoại"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="addressNhan">Địa chỉ</label></td>
+                        <td><input type="text" id="addressNhan" name="Địa chỉ"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ghichu">Ghi chú</label></td>
+                        <td><textarea id="ghichu" name="Ghi chú" cols="25" rows="5"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="phim">
+                <button type="button" id="datHangButton">Đặt hàng</button>
+                <button type="button" id="nhapLaiButton">Nhập lại</button>
+            </div>
+        </form>
+    </fieldset>
+    <script>
+        let orderForm = document.getElementById('orderForm');
+        let datHangButton = document.getElementById('datHangButton');
+        let nhapLaiButton = document.getElementById('nhapLaiButton');
+        let guiMailMua = document.getElementById('guiMailMua');
+        let nguoiNhan = document.getElementById('nguoiNhan');
+    
+        datHangButton.addEventListener('click', function () {
+            let hovatenMua = document.getElementById('hovatenMua').value.trim();
+            let emailMua = document.getElementById('emailMua').value.trim();
+            let phonenumberMua = document.getElementById('phonenumberMua').value.trim();
+            let addressMua = document.getElementById('addressMua').value.trim();
+            let ngaydatMua = document.getElementById('ngaydatMua').value.trim();
+            let thanhtoanMua = document.getElementById('thanhtoanMua').value.trim();
+            let hovatenNhan = document.getElementById('hovatenNhan').value.trim();
+            let emailNhan = document.getElementById('emailNhan').value.trim();
+            let phonenumberNhan = document.getElementById('phonenumberNhan').value.trim();
+            let addressNhan = document.getElementById('addressNhan').value.trim();
+            let ghichu = document.getElementById('ghichu').value.trim();
+    
+            let isValid = true;
+    
+            if (!hovatenMua || !emailMua || !phonenumberMua || !addressMua || !ngaydatMua || !thanhtoanMua) {
+                isValid = false;
+                alert('Tất cả các trường thông tin người mua không được để trống.');
+            }
+    
+            if (!isValid) {
+                return;
+            }
+    
+            if (hovatenMua !== hovatenMua.toUpperCase()) {
+                isValid = false;
+                alert('Họ và tên người mua phải viết hoa.');
+            }
+    
+            if (!isValid) {
+                return;
+            }
+    
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(emailMua) || !emailPattern.test(emailNhan)) {
+                isValid = false;
+                alert('Email không đúng định dạng.');
+            }
+    
+            if (!isValid) {
+                return;
+            }
+    
+            const datePattern = /^\d{2}-\d{2}-\d{4}$/;
+            if (!datePattern.test(ngaydatMua)) {
+                isValid = false;
+                alert('Ngày đặt không đúng định dạng dd-mm-yyyy.');
+            }
+    
+            if (!isValid) {
+                return;
+            }
+    
+            if (nguoiNhan.checked) {
+                document.getElementById('hovatenNhan').value = hovatenMua;
+                document.getElementById('emailNhan').value = emailMua;
+                document.getElementById('phonenumberNhan').value = phonenumberMua;
+                document.getElementById('addressNhan').value = addressMua;
+            }
+    
+            if (guiMailMua.checked) {
+                alert('Đặt hàng thành công, email đã gửi tới cho quý khách.');
+            } else {
+                alert('Đặt hàng thành công.');
+            }
+        });
+    
+        nhapLaiButton.addEventListener('click', function () {
+            orderForm.reset();
+        });
+    </script>
+</body>
+</html>

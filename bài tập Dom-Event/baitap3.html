@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #itemList{
+        list-style: none;
+    }
+</style>
+<body>
+    <h1>Create New Item</h1>
+    <label for="item">Item</label>
+    <input type="text" id="item">
+    <button id="btn">Add</button>
+    <ul id="itemList">
+        <li>Nho Tàu</li>
+        <li>Táo Mỹ</li>
+    </ul>
+    <script>
+        let item = document.getElementById("item");
+        let btn = document.getElementById("btn");
+        let itemList = document.getElementById("itemList");
+        item.style.backgroundColor = "yellow"
+        btn.addEventListener("click",()=>{
+            item = document.getElementById("item").value;
+            let li = document.createElement("li");
+            li.textContent = item;
+            itemList.appendChild(li)
+        });
+        item.addEventListener("input",()=>{
+            if (item.value !="") {
+                item.style.backgroundColor =""
+            } else {
+                item.style.backgroundColor = "yellow"
+            }
+        })
+        
+
+    </script>
+</body>
+</html>
